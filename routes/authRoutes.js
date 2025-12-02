@@ -7,9 +7,10 @@ const {
     getUserProfile,
 
 } = require('../controllers/authController');
+const { protect } = require('../middleware/authMiddleware');
 
 router.post('/register', registerUser);
 router.post('/login', authUser);
-router.get('/profile', getUserProfile);
+router.get('/profile', protect, getUserProfile);
 
 module.exports = router;
