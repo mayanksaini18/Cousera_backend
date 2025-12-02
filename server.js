@@ -4,7 +4,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
-const productRoutes = require('./routes/productRoutes');
+const courseRoutes = require('./routes/courseRoutes');
+const purchaseRoutes = require('./routes/purchaseRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 dotenv.config();
@@ -19,8 +20,9 @@ app.use(cors());
 app.use(express.json()); // body parser for JSON
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/courses', courseRoutes);
+app.use('/api/v1/purchases', purchaseRoutes);
 
 // Health check
 app.get('/', (req, res) => res.send('API is running'));
